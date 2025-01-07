@@ -8,6 +8,8 @@ class Url < ApplicationRecord
   private
 
   def generate_short_url
-    self.short_url ||= SecureRandom.urlsafe_base64(20)
+    prefix = 'url-shortner.ly/'
+    short_url = prefix + SecureRandom.urlsafe_base64(20)
+    self.short_url ||= short_url
   end
 end
