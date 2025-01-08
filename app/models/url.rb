@@ -1,5 +1,6 @@
-class Url < ApplicationRecord
+# frozen_string_literal: true
 
+class Url < ApplicationRecord
   validates :long_url, presence: true
   validates :custom_slug, uniqueness: true, allow_nil: true
   validates :short_url, uniqueness: true
@@ -7,7 +8,6 @@ class Url < ApplicationRecord
 
   before_validation :generate_short_url, on: :create
   before_validation :set_default_expiration
-
 
   def active_short_url?
     expired_at.nil? || Time.current < expired_at
