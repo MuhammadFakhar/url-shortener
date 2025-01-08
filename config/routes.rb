@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :urls, only: %w[create index show]
+      get 'analytics', to: 'urls#analytics'
   end
 
   scope module: 'api' do
