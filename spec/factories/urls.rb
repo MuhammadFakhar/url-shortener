@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :url do
-    long_url { 'MyText' }
-    short_url { 'MyString' }
-    clicks { 1 }
+    long_url { 'https://www.sample.com' }
+    custom_slug { nil }
+    expired_at { 5.days.from_now }
   end
 end
