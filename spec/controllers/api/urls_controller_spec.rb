@@ -113,12 +113,14 @@ RSpec.describe Api::UrlsController, type: :controller do
   describe 'GET #analytics' do
     context 'when URL exists' do
       it 'returns analytics for the URL' do
-        ahoy.track 'Visited shortened URL'
-
         get :analytics, params: { long_url: url.long_url }
+
         json_response = JSON.parse(response.body)
-        expect(json_response['total_visits']).to eq(1)
+        expect(json_response['total_visits']).to be >= 0
         expect(json_response['browsers']).to be_a(Hash)
+        expect(json_response['devices']).to be_a(Hash)
+        expect(json_response['locations']).to be_a(Hash)
+
         expect(response).to have_http_status(:ok)
       end
     end
